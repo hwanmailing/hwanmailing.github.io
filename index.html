@@ -1,0 +1,391 @@
+<!-- <!doctype html><html><head><script src="/fxHeader.js"></script></head><body><script src="/fxFrame.js"></script> -->
+    <!doctype html><html><head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <!--url 경로에 /를 안붙이면 .htaccess의 redirect를 사용시 해당 화일을 찾지 못한다.-->
+        <!-------------------------- my libraries ------------------------------------->
+        
+        <script src="./box_v1.js"></script>
+        <script src="./box_interface_v1.js"></script>
+        <script src="./Functions.js"></script>
+        <script src="./icons.js"></script>
+        <style>
+          
+          body {
+            margin:0px;
+            /* padding:0px; */
+            /*font-family: Verdana, meiryo, gulim;*/ /* Verdana, meiryo, gulim;*/
+            /* font-family:'helvetica neue', STHeiti, 'nanum gothic', sans-serif; */
+            /* font-family:Verdana, STHeiti, 'nanum gothic', sans-serif; */
+            background-color: #353535;
+            color:white;
+            font-family:Verdana;
+            font-size:100%; /*이놈을 넣어야 오래된 IE버전에서 1.0em이 똑같은 텍스트 크기로 나온다. 1.0em은 브라우져 공통 크기임*/
+            /* margin:1000 1000 1000 1000; */
+            /*overflow:auto;*/
+            
+          } /* overflow:aut overflow-y: scroll; overflow-x:hidden;*/
+        </style>
+    </head><body>
+      <script type="text/javascript">
+      //var pBody = el(document.body);
+      //pBody.css( {"margin":"0px", "background-color": "#353535", "color":"white", "font-family":"Verdana", "font-size":"100%"} );
+      
+      var fMainWidth, fMainPadding, fImageSideSpace, fImageGapS, fImageSize, fIconSize; // 가운데 영역과 여백크기
+      var sColor = "dodgerblue";
+      var sSelectColor = "#FFFFa0";
+      function recalculateUI(bMobile,bTablet){
+        if( is(bMobile)  == false )
+          bMobile = g_bMobile;
+        if( is(bTablet)  == false )
+          bTablet = g_bTablet;
+
+        /*
+        그냥 모바일에서 페이지를 여는 경우는 화면크기로 기준으로 잡지만 desktop에서 모바일 크기로 변경한 경우 g_fMobileWidth크기를 기준으로 잡는다. 
+        따라서 bMobile값이 true라고 해도 desktop일수 있으므로 g_bMobile값을 확인하여 화면크기 기준을 잡는다.
+        */
+        if( bMobile ){
+          var fWidth = (g_bMobile)?g_fScreenWidth:g_fMobileWidth;
+          fMainWidth = fWidth*1.0;
+          fIconSize  = fMainWidth*0.18;
+        } else if( bTablet ) {
+          var fWidth = (g_bTablet)?g_fScreenWidth:g_fTabletWidth;
+          fMainWidth = fWidth*0.9;
+          fIconSize  = fMainWidth*0.13;
+        } else { // 모바일이나 테이블처럼 작은 스크린이 아니라면
+          fMainWidth = g_fScreenWidth*0.8;
+          fIconSize  = fMainWidth*0.1;
+        }
+
+        fMainPadding = (fWidth - fMainWidth)*0.5 - 1;
+        if( fMainPadding < 0 )
+          fMainPadding = 0;
+
+        fImageSideSpace = fMainWidth*0.01;
+        fImageGapS = fMainWidth*0.01;
+        fImageSize = (fMainWidth - fImageSideSpace*2.0 - fImageGapS*3.0)*0.25;
+      }
+
+      /*
+      fMainWidth는 가운데 메인영역 크기
+      fMainPadding은 가운데 메인영역 좌우 여백 크기
+      */
+      //var sColor = "dogerblue";
+      var sHoverColor = "forestgreen";
+      g_sHover = sHoverColor;
+      recalculateUI();
+      autoColor(false);
+      //------- percent size 20 => 20%
+      var fPaddingSpace = fMainWidth*0.001;
+      var fAppNameSize = 20;
+
+      function createApp(bLine1,bLine2,bLine3,sApp,sDesc,sIcon,sImg1,sImg2,sImg3,sImg4,sLink){
+
+        var pLine1, pLine2, pLine3;
+        initBlocks();
+        //space().height(10);
+        if( bLine1 )
+          block(divLine("#333333",0,10));
+
+        if( g_bMobile )
+          space(30);
+        else if( g_bTablet )
+          space(40);
+        else
+          space(50);
+
+        var pTitleBlock = block();
+        space(fPaddingSpace);
+        //--------- div에 img를 넣을때 vAlignTop()을 해줘야 딱 맞춰지는듯
+        var pIconDiv = item(img(sIcon)).width(fIconSize).css("border-radius","20%").vAlignTop().border(5,sSelectColor);
+        //var pIconTitleSpace = space(fMainWidth*0.01);
+        if( g_bMobile )
+          space(12);
+        else if( g_bTablet )
+          space(14);
+        else
+          space(18);
+
+        var pOuterBox = item().height(fIconSize);
+        var pOpenButton = createTextButton("#eeeeee","#ffffff",sColor,"forestgreen","Get App", false, function(e){
+          /* http://... 와 같은 전체경로 그냥 ../ 나 / 와 같은 상대경로로 먹힌다. */
+          //window.location = sNextPagePath;
+          //alert(sNextPagePath);
+          window.open(sLink);
+          //window.location = "https://apps.apple.com/us/app/smart-note-notepad-draw-memo/id997513915";
+          //=window.location.replace(sRootDir + sNextPagePath);
+        }).fontSize(g_fFontSize*0.9);
+        
+        this.sAppName = sApp;
+        var pAppName = div(sApp).fontSize(g_fFontSize*1.4).css("font-weight","bold").color("#eeeeee");
+        var pAppDesc = div(sDesc).fontSize(g_fFontSize*0.8).color("#aaaaaa");
+        var pTitleDiv = div().vAlignTop().color("white");
+        pTitleDiv.append( pAppName, pAppDesc );
+        pOuterBox.append( pTitleDiv ,div(pOpenButton).absolute().bottom(0) ).relative();
+        // var fImageSideSpace = fMainWidth*0.01;
+        // var fImageGapS = fMainWidth*0.01;
+        // var fImageSize = (fMainWidth - fImageSideSpace*2.0 - fImageGapS*3.0)*0.25;
+        space( 100 - fPaddingSpace*2 - fAppNameSize - fIconSize );
+        space( fImageSideSpace )
+        block();
+        if( bLine2 )
+          block(divLine("#555555",18,20));
+        block();
+        space();
+        var img1 = item(img(sImg1)).width(fImageSize);
+        var img1Space = space();
+        var img2 = item(img(sImg2)).width(fImageSize);
+        var img2Space = space();
+        var img3 = item(img(sImg3)).width(fImageSize);
+        var img3Space = space();
+        var img4 = item(img(sImg4)).width(fImageSize);
+        space();
+        
+        var pMain = mainBlock();
+        //pMain.css("padding","0, 0, 0, 0");
+        //pMain.padding( 0,fMainPadding,0, fMainPadding).remove();
+        //var pTotalDiv = div().toBody().textAlign("center");
+        this.pTotalDiv = div().toBody().hAlignCenter();
+        // 가운데 정렬하기 위해서 pTotalDiv에 3개의 div()를 inlineBlcok으로 만들어서 넣고 hAlignCenter()를 때려서 가운데 정렬이 되게 한다.
+        this.pTotalDiv.append( div().inlineBlock(), pMain.remove().inlineBlock(), div().inlineBlock() );
+        // if( bLine3 ){
+        //   pLine3 = box_line(24,10,"#777777",false).width(fMainWidth);
+        //   pTotalDiv.append( div().inlineBlock(), pLine3.inlineBlock(), div().inlineBlock() );
+        // }
+        pTitleBlock.hAlignLeft(); // 전체를 hAlignCenter()로 바꾸면 자식들도 모두 바뀐다. 따라서 TitleBlock은 왼쪽으로 붙여준다.
+        //rearrangeUI();
+
+        this.rearrangeUI = function(){
+          pMain.width(fMainWidth);
+          pIconDiv.width(fIconSize);
+          pOuterBox.height(fIconSize);
+          //pIconTitleSpace.width(fMainWidth*0.016);
+          //pIconTitleSpace.width(20);
+          img1.width(fImageSize);
+          img1Space.width(fImageGapS);
+          img2.width(fImageSize);
+          img2Space.width(fImageGapS);
+          img3.width(fImageSize);
+          img3Space.width(fImageGapS);
+          img4.width(fImageSize);
+          // if( bLine1 )
+          //   pLine1.width(fMainWidth);
+          // if( bLine2 )
+          //   pLine2.width(fMainWidth);
+          // if( bLine3 )
+          //   pLine3.width(fMainWidth);
+
+        }
+
+        return this;
+      }
+
+      function path(str){
+        return "img/" + str + ".jpg";
+      }
+
+      //div(20).toBody().bgColor();
+
+      function createTitleBlock(sColor,sBGColor,fFontSize, sText){
+        var pMainTitleOutter = div().toBody().hAlignCenter().bgColor(sBGColor);
+        var pMainTitle = div(sText).fontSize(fFontSize).inlineBlock().width(fMainWidth).color(sColor);
+        pMainTitleOutter.append( div().inlineBlock(), pMainTitle , div().inlineBlock() );
+        return pMainTitle;
+      }
+      
+      var fFontSize = 24;
+      if( g_bMobile )
+        fFontSize = 16;
+      var pTitleBlock1 = createTitleBlock("#d0d0d0","#353535",fFontSize*1.7,"Beyond your ipad").padding(10,0);
+      //div(2).toBody();
+      //var pTitleBlock2 = createTitleBlock("#eeeeee",sColor,20,"Handwriting note taking app").padding(4,0);
+      var pTitleBlock2 = createTitleBlock("#999999","#353535",fFontSize,"Smart Improvement with the note-taking app").padding(4,0);
+      div(6).toBody();
+      //----------------------------------------------------------------- Menu
+      initBlocks();
+      space(10);
+      block().hAlignCenter().bgColor("#444444").padding(7,0,4,0);
+      var arrMenu = [];
+      var arrApps = [];
+      var fIcon = 80;
+      var fMenuSpace = 24;
+      if( g_bMobile ){
+        fIcon = 40;
+        fMenuSpace = 6;
+      }else if( g_bTablet ){
+        fIcon = 60;
+        fMenuSpace = 14;
+      }
+      var pMenu_SmartNote = item(img(path("SmartNote")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_SmartNote);
+      var pMenu_StickyNotes = item(img(path("StickyNotes")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_StickyNotes);
+      var pMenu_Handwriting = item(img(path("Handwriting")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_Handwriting);
+      var pMenu_ThinkNote = item(img(path("ThinkNote")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_ThinkNote);
+      var pMenu_PenNote = item(img(path("PenNote")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_PenNote);
+      var pMenu_NewNote = item(img(path("NewNote")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_NewNote);
+      var pMenu_CADHD = item(img(path("CADHD")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_CADHD);
+      block(6);
+
+      
+      
+
+      //----------------------------------------------------------------- Apps
+      var pCurrentApp;
+      var pSmartNotes = new createApp(true,true,true,"SmartNote","Notes on Photo, Write Notebook",path("SmartNote"),path("SmartNote_1"),path("SmartNote_2"),path("SmartNote_3"),path("SmartNote_4"),"https://apps.apple.com/us/app/smart-note-notepad-draw-memo/id997513915");
+      arrApps.push(pSmartNotes);
+      pSmartNotes.rearrangeUI(); 
+      
+      var pCADHD = new createApp(true,true,true,"CADHD","concept drafting sketch",path("CADHD"),path("CADHD_1"),path("CADHD_2"),path("CADHD_3"),path("CADHD_4"),"https://apps.apple.com/us/app/cad-hd/id998042409");
+      arrApps.push(pCADHD);
+      pCADHD.rearrangeUI();
+      
+      var pStickyNotes = new createApp(true,true,true,"StickyNotes","simpley use, fast performance",path("StickyNotes"),path("StickyNotes_1"),path("StickyNotes_2"),path("StickyNotes_3"),path("StickyNotes_4"),"https://apps.apple.com/us/app/sticky-notes-pin-pad-pro/id1108418166");
+      arrApps.push(pStickyNotes);
+      pStickyNotes.rearrangeUI();
+      
+      var pHandwriting = new createApp(true,true,true,"Handwriting","Handwriting Notes, handwriting on paper",path("Handwriting"),path("Handwriting_1"),path("Handwriting_2"),path("Handwriting_3"),path("Handwriting_4"),"https://apps.apple.com/us/app/handwriting-notepad-draw-notes/id957141299");
+      arrApps.push(pHandwriting);
+      pHandwriting.rearrangeUI();
+      
+      var pThinkNote = new createApp(true,true,true,"ThinkNote","think and draw grid, pattern on blackboard",path("ThinkNote"),path("ThinkNote_1"),path("ThinkNote_2"),path("ThinkNote_3"),path("ThinkNote_4"),"https://apps.apple.com/us/app/think-note-book-write-edit/id1075912579");
+      arrApps.push(pThinkNote);
+      pThinkNote.rearrangeUI();
+      
+      var pNewNotes = new createApp(true,true,true,"NewNote","study draw, think, designs, patterns",path("NewNote"),path("NewNote_1"),path("NewNote_2"),path("NewNote_3"),path("NewNote_4"),"https://apps.apple.com/us/app/new-note-notebook-draw-memo/id995861016");
+      arrApps.push(pNewNotes);
+      pNewNotes.rearrangeUI();
+      
+      var pPenNote = new createApp(true,true,true,"PenNote","finger paint memo, draw on pic",path("PenNote"),path("PenNote_1"),path("PenNote_2"),path("PenNote_3"),path("PenNote_4"),"https://apps.apple.com/us/app/pen-note-taking-memo-notepad/id634090795");
+      arrApps.push(pPenNote);
+      pPenNote.rearrangeUI();
+
+      //----------------------------------------------------------------- menu clicked
+      arrMenu.forEach(function(item,index){
+        item.hovered({"color":sColor});
+        item.selected({"color":sColor});
+        item.clicked({"color":"blue"});
+        item.onclick(function(e){
+          var pSelectedApp;
+          if( item == pMenu_SmartNote )
+            pSelectedApp = pSmartNotes;
+          else if( item == pMenu_CADHD )
+            pSelectedApp = pCADHD;
+          else if( item == pMenu_StickyNotes )
+            pSelectedApp = pStickyNotes;
+          else if( item == pMenu_Handwriting )
+            pSelectedApp = pHandwriting;
+          else if( item == pMenu_ThinkNote )
+            pSelectedApp = pThinkNote;
+          else if( item == pMenu_NewNote )
+            pSelectedApp = pNewNotes;
+          else if( item == pMenu_PenNote )
+            pSelectedApp = pPenNote;
+
+          hideAppsExceptOne(pSelectedApp);
+        });
+      });
+
+      function hideAppsExceptOne(pExceptApp){
+        arrApps.forEach(function(item,index){
+          if( pExceptApp == item ){
+            pCurrentApp = item;
+            item.pTotalDiv.show();
+            selectMenu(item);
+
+          } else {
+            item.pTotalDiv.hide();
+          }
+        });
+      }
+
+      function selectMenu(pApp){
+        var pMenu;
+        if( pApp == pSmartNotes )
+          pMenu = pMenu_SmartNote;
+        else if( pApp == pCADHD )
+          pMenu = pMenu_CADHD;
+        else if( pApp == pStickyNotes )
+          pMenu = pMenu_StickyNotes;
+        else if( pApp == pHandwriting )
+          pMenu = pMenu_Handwriting;
+        else if( pApp == pThinkNote )
+          pMenu = pMenu_ThinkNote;
+        else if( pApp == pNewNotes )
+          pMenu = pMenu_NewNote;
+        else if( pApp == pPenNote )
+          pMenu = pMenu_PenNote;
+
+        arrMenu.forEach(function(item,index){
+          //item.select();
+          if( item == pMenu ){
+            item.select();
+            item.border(3,sSelectColor);
+          } else {
+            item.select(false);
+            item.border(3,"white");
+          }
+        });
+      }
+      
+      //-------------------------------------------------------------- current App
+      // http://127.0.0.1:3000/index.html?app=newnote
+      var sParam = findGetParameter("app");
+      if( is(sParam) ){
+        if( sParam == "smartnote" )
+          pCurrentApp = pSmartNotes;
+        else if( sParam == "cadhd" )
+          pCurrentApp = pCADHD;
+        else if( sParam == "stickynotes" )
+          pCurrentApp = pStickyNotes;
+        else if( sParam == "handwriting" )
+          pCurrentApp = pHandwriting;
+        else if( sParam == "thinknote" )
+          pCurrentApp = pThinkNote;
+        else if( sParam == "newnote" )
+          pCurrentApp = pNewNotes;
+        else if( sParam == "pennote" )
+          pCurrentApp = pPenNote;
+        else
+          pCurrentApp = pSmartNotes;
+      }
+
+      if( is(pCurrentApp) == false )
+       pCurrentApp = pSmartNotes;
+      hideAppsExceptOne(pCurrentApp);
+
+      /*
+       maxWidth는 창크기 변경시 혹은 초기에 화면이 열릴때(화면이 0에서 해당 크기로 되는 이벤트임)마다 호출되는 함수 
+       모바일 < g_fMobileWidth(900px)
+       g_fMobileWidth(900px) < g_fTabletWidth(1400px)
+       g_fTabletWidth(1400px) < 데스크톱
+      */
+      maxWidth( function(bMobile,bTablet){
+        recalculateUI(bMobile,bTablet); // 마진을 줄인다.
+        pSmartNotes.rearrangeUI();
+        pNewNotes.rearrangeUI();
+        pPenNote.rearrangeUI();
+        pThinkNote.rearrangeUI();
+        pCADHD.rearrangeUI();
+        pHandwriting.rearrangeUI();
+        pStickyNotes.rearrangeUI();
+        pTitleBlock1.width(fMainWidth);
+        pTitleBlock2.width(fMainWidth);
+      });
+      
+      </script>
+    </body></html>
+    
