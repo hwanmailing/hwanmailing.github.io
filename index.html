@@ -29,6 +29,14 @@
         </style>
     </head><body>
       <script type="text/javascript">
+      //---------------------- fMul => mobile, tablet, desktop에 따라 크기비율을 줄여서 화면에 딱 보이게 하기 위한 비율값
+      var fMul = 1.0;
+      if( g_bMobile )
+        fMul = 0.42
+      else if( g_bTablet )
+        fMul = 0.6
+      else
+        fMul = 0.9 // desktop
       //var pBody = el(document.body);
       //pBody.css( {"margin":"0px", "background-color": "#353535", "color":"white", "font-family":"Verdana", "font-size":"100%"} );
       
@@ -47,7 +55,7 @@
         */
         if( bMobile ){
           var fWidth = (g_bMobile)?g_fScreenWidth:g_fMobileWidth;
-          fMainWidth = fWidth*1.0;
+          fMainWidth = fWidth*0.98;
           fIconSize  = fMainWidth*0.18;
         } else if( bTablet ) {
           var fWidth = (g_bTablet)?g_fScreenWidth:g_fTabletWidth;
@@ -73,6 +81,16 @@
       */
       //var sColor = "dogerblue";
       var sHoverColor = "forestgreen";
+      var sLineColor = "#484848";
+      var fLineGap1 = 60*fMul;
+      var fLineGap2 = 60*fMul;
+      // if( g_bMobile ){
+      //   fLineGap1 = 30;
+      //   fLineGap2 = 22;
+      // }else if(g_bTablet){
+      //   fLineGap1 = 40;
+      //   fLineGap2 = 30;
+      // }
       g_sHover = sHoverColor;
       recalculateUI();
       autoColor(false);
@@ -86,27 +104,21 @@
         initBlocks();
         //space().height(10);
         if( bLine1 )
-          block(divLine("#333333",0,10));
+          block(divLine(sLineColor,fLineGap1,fLineGap2));
 
-        if( g_bMobile )
-          space(30);
-        else if( g_bTablet )
-          space(40);
-        else
-          space(50);
+        // if( g_bMobile )
+        //   space(30);
+        // else if( g_bTablet )
+        //   space(40);
+        // else
+        //   space(50);
 
         var pTitleBlock = block();
         space(fPaddingSpace);
         //--------- div에 img를 넣을때 vAlignTop()을 해줘야 딱 맞춰지는듯
         var pIconDiv = item(img(sIcon)).width(fIconSize).css("border-radius","20%").vAlignTop().border(5,sSelectColor);
         //var pIconTitleSpace = space(fMainWidth*0.01);
-        if( g_bMobile )
-          space(12);
-        else if( g_bTablet )
-          space(14);
-        else
-          space(18);
-
+        space(18*fMul);
         var pOuterBox = item().height(fIconSize);
         var pOpenButton = createTextButton("#eeeeee","#ffffff",sColor,"forestgreen","Get App", false, function(e){
           /* http://... 와 같은 전체경로 그냥 ../ 나 / 와 같은 상대경로로 먹힌다. */
@@ -130,7 +142,7 @@
         space( fImageSideSpace )
         block();
         if( bLine2 )
-          block(divLine("#555555",18,20));
+          block(divLine(sLineColor,fLineGap1,fLineGap2));
         block();
         space();
         var img1 = item(img(sImg1)).width(fImageSize);
@@ -141,7 +153,9 @@
         var img3Space = space();
         var img4 = item(img(sImg4)).width(fImageSize);
         space();
-        
+        if( bLine3 )
+          block(divLine(sLineColor,fLineGap1,fLineGap2));
+
         var pMain = mainBlock();
         //pMain.css("padding","0, 0, 0, 0");
         //pMain.padding( 0,fMainPadding,0, fMainPadding).remove();
@@ -197,6 +211,7 @@
       var fFontSize = 24;
       if( g_bMobile )
         fFontSize = 16;
+
       var pTitleBlock1 = createTitleBlock("#d0d0d0","#353535",fFontSize*1.7,"Beyond your ipad").padding(10,0);
       //div(2).toBody();
       //var pTitleBlock2 = createTitleBlock("#eeeeee",sColor,20,"Handwriting note taking app").padding(4,0);
@@ -208,15 +223,8 @@
       block().hAlignCenter().bgColor("#444444").padding(7,0,4,0);
       var arrMenu = [];
       var arrApps = [];
-      var fIcon = 80;
-      var fMenuSpace = 24;
-      if( g_bMobile ){
-        fIcon = 40;
-        fMenuSpace = 6;
-      }else if( g_bTablet ){
-        fIcon = 60;
-        fMenuSpace = 14;
-      }
+      var fIcon = 86*fMul;
+      var fMenuSpace = 16*fMul;
       var pMenu_SmartNote = item(img(path("SmartNote")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
       arrMenu.push(pMenu_SmartNote);
@@ -272,6 +280,12 @@
       var pPenNote = new createApp(true,true,true,"PenNote","finger paint memo, draw on pic",path("PenNote"),path("PenNote_1"),path("PenNote_2"),path("PenNote_3"),path("PenNote_4"),"https://apps.apple.com/us/app/pen-note-taking-memo-notepad/id634090795");
       arrApps.push(pPenNote);
       pPenNote.rearrangeUI();
+
+      var pTitleBlock3 = createTitleBlock("#999999","#353535",fFontSize*0.5,"Support, Sales, Marketing or any other questions you might have about our products, services").padding(4,0);
+      div(8*fMul).toBody();
+
+      var pTitleBlock3 = createTitleBlock("#999999","#353535",fFontSize*0.72,"contact us").padding(4,0);
+      div(30).toBody();
 
       //----------------------------------------------------------------- menu clicked
       arrMenu.forEach(function(item,index){

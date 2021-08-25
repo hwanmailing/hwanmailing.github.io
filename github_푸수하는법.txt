@@ -1,0 +1,3 @@
+command line 에 
+아래 명령어를 치면 올라간다.
+sh github_push
