@@ -5,6 +5,6 @@
 !.elasticbeanstalk/*.global.yml
 backup/*
 originalImages/*
-github_push
+push
 github_푸쉬하는법.txt
 
