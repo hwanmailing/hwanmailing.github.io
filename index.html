@@ -240,6 +240,9 @@
       var pMenu_ThinkNote = item(img(path("ThinkNote")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
       arrMenu.push(pMenu_ThinkNote);
+      var pMenu_HandyNote = item(img(path("HandyNote")).width(fIcon).css("border-radius","20%"));
+      space(fMenuSpace);
+      arrMenu.push(pMenu_HandyNote);
       var pMenu_PenNote = item(img(path("PenNote")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
       arrMenu.push(pMenu_PenNote);
@@ -275,6 +278,10 @@
       var pHandwriting = new createApp(true,true,true,"Handwriting","Handwriting Notes, handwriting on paper",path("Handwriting"),path("Handwriting_1"),path("Handwriting_2"),path("Handwriting_3"),path("Handwriting_4"),"https://apps.apple.com/us/app/handwriting-notepad-draw-notes/id957141299");
       arrApps.push(pHandwriting);
       pHandwriting.rearrangeUI();
+
+      var pHandyNote = new createApp(true,true,true,"HandyNote","HandyNote Notes, HandyNote on paper",path("Handynote"),path("HandyNote_1"),path("HandyNote_2"),path("HandyNote_3"),path("HandyNote_4"),"https://apps.apple.com/us/app/handy-note-notepad-draw-memo/id1595372536");
+      arrApps.push(pHandyNote);
+      pHandyNote.rearrangeUI();
       
       var pThinkNote = new createApp(true,true,true,"ThinkNote","think and draw grid, pattern on blackboard",path("ThinkNote"),path("ThinkNote_1"),path("ThinkNote_2"),path("ThinkNote_3"),path("ThinkNote_4"),"https://apps.apple.com/us/app/think-note-book-write-edit/id1075912579");
       arrApps.push(pThinkNote);
@@ -317,6 +324,8 @@
             pSelectedApp = pPlusNote;
           else if( item == pMenu_Handwriting )
             pSelectedApp = pHandwriting;
+          else if( item == pMenu_HandyNote )
+            pSelectedApp = pHandyNote;
           else if( item == pMenu_ThinkNote )
             pSelectedApp = pThinkNote;
           else if( item == pMenu_NewNote )
@@ -353,6 +362,8 @@
           pMenu = pMenu_PlusNote;
         else if( pApp == pHandwriting )
           pMenu = pMenu_Handwriting;
+        else if( pApp == pHandyNote )
+          pMenu = pMenu_HandyNote;
         else if( pApp == pThinkNote )
           pMenu = pMenu_ThinkNote;
         else if( pApp == pNewNotes )
@@ -386,6 +397,8 @@
           pCurrentApp = pPlusNote;
         else if( sParam == "handwriting" )
           pCurrentApp = pHandwriting;
+        else if( sParam == "handynote" )
+          pCurrentApp = pHandyNote;
         else if( sParam == "thinknote" )
           pCurrentApp = pThinkNote;
         else if( sParam == "newnote" )
@@ -415,6 +428,7 @@
         pPlusNote.rearrangeUI();
         pCADHD.rearrangeUI();
         pHandwriting.rearrangeUI();
+        pHandyNote.rearrangeUI();
         pStickyNotes.rearrangeUI();
         pTitleBlock1.width(fMainWidth);
         pTitleBlock2.width(fMainWidth);
