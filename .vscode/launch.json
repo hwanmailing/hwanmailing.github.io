@@ -1,0 +1,61 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            //"url": "http://localhost/index.html",
+            //"file": "${workspaceFolder}"
+            "file": "${file}"
+            //"program": "${file}"
+            //"webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+// {
+//     "version": "0.1.0",
+//     "configurations": [
+
+//         {
+//             "name": "Launch localhost",
+//             "type": "chrome",
+//             "request": "launch",
+//             //"url": "http://localhost/index.html",
+//             "url": "http://localhost/${fileDirname}",
+//             //"url": "http://localhost/",
+//             //"webRoot": "${workspaceRoot}/client/src"
+            
+//             //"program": "${file}"
+//             "webRoot": "${workspaceFolder}"
+//         },
+//         // {
+//         //     "name": "Launch index.html",
+//         //     "type": "chrome",
+//         //     "request": "launch",
+//         //     "file": "${file}" // current file path
+//         // },
+//     ]
+// }
+
+// {
+//     "version": "0.1.0",
+//     "configurations": [
+//         {
+//             "name": "Launch localhost",
+//             "type": "chrome",
+//             "request": "launch",
+//             "url": "http://localhost/index.html",
+//             "webRoot": "${workspaceFolder}"
+//         },
+//         {
+//             "name": "Launch index.html",
+//             "type": "chrome",
+//             "request": "launch",
+//             "file": "${workspaceFolder}/index.html"
+//         },
+//     ]
+// }
