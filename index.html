@@ -82,8 +82,8 @@
       //var sColor = "dogerblue";
       var sHoverColor = "forestgreen";
       var sLineColor = "#484848";
-      var fLineGap1 = 60*fMul;
-      var fLineGap2 = 60*fMul;
+      var fLineGap1 = 30*fMul;
+      var fLineGap2 = 40*fMul;
       // if( g_bMobile ){
       //   fLineGap1 = 30;
       //   fLineGap2 = 22;
@@ -120,7 +120,7 @@
         //var pIconTitleSpace = space(fMainWidth*0.01);
         space(18*fMul);
         var pOuterBox = item().height(fIconSize);
-        var pOpenButton = createTextButton("#eeeeee","#ffffff",sColor,"forestgreen","Get App", false, function(e){
+        var pOpenButton = createTextButton("#eeeeee","#ffffff",sColor,"forestgreen","Get Game", false, function(e){
           /* http://... 와 같은 전체경로 그냥 ../ 나 / 와 같은 상대경로로 먹힌다. */
           //window.location = sNextPagePath;
           //alert(sNextPagePath);
@@ -196,7 +196,7 @@
       }
 
       function path(str){
-        return "img/" + str + ".jpg";
+        return "img/" + str + ".png";
       }
 
       //div(20).toBody().bgColor();
@@ -212,90 +212,109 @@
       if( g_bMobile )
         fFontSize = 16;
 
-      var pTitleBlock1 = createTitleBlock("#d0d0d0","#353535",fFontSize*1.7,"Beyond your ipad").padding(10,0);
-      //div(2).toBody();
-      //var pTitleBlock2 = createTitleBlock("#eeeeee",sColor,20,"Handwriting note taking app").padding(4,0);
-      var pTitleBlock2 = createTitleBlock("#999999","#353535",fFontSize,"Smart Improvement with the note-taking App").padding(4,0);
-      div(6).toBody();
+      //div(6).toBody();
       //----------------------------------------------------------------- Menu
       initBlocks();
-      space(10);
-      block().hAlignCenter().bgColor("#444444").padding(7,0,4,0);
-      var arrMenu = [];
+      //space(10);
+      //block().hAlignCenter().bgColor("#444444").padding(7,0,4,0);
+      //var arrMenu = [];
       var arrApps = [];
       var fIcon = 86*fMul;
       var fMenuSpace = 10*fMul;
-      var pMenu_SmartNote = item(img(path("SmartNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_SmartNote);
-      var pMenu_PlusNote = item(img(path("PlusNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_PlusNote);
-      var pMenu_StickyNotes = item(img(path("StickyNotes")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_StickyNotes);
-      var pMenu_Handwriting = item(img(path("Handwriting")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_Handwriting);
-      var pMenu_ThinkNote = item(img(path("ThinkNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_ThinkNote);
-      var pMenu_HandyNote = item(img(path("HandyNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_HandyNote);
-      var pMenu_PenNote = item(img(path("PenNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_PenNote);
-      var pMenu_NewNote = item(img(path("NewNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_NewNote);
-      var pMenu_CADHD = item(img(path("CADHD")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_CADHD);
-      block(6);
+      // var pMenu_JumpingSpear = item(img(path("JumpingSpear")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      //arrMenu.push(pMenu_JumpingSpear);
+      // var pMenu_PlusNote = item(img(path("PlusNote")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_PlusNote);
+      // var pMenu_StickyNotes = item(img(path("StickyNotes")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_StickyNotes);
+      // var pMenu_Handwriting = item(img(path("Handwriting")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_Handwriting);
+      // var pMenu_ThinkNote = item(img(path("ThinkNote")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_ThinkNote);
+      // var pMenu_HandyNote = item(img(path("HandyNote")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_HandyNote);
+      // var pMenu_PenNote = item(img(path("PenNote")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_PenNote);
+      // var pMenu_NewNote = item(img(path("NewNote")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_NewNote);
+      // var pMenu_CADHD = item(img(path("CADHD")).width(fIcon).css("border-radius","20%"));
+      // space(fMenuSpace);
+      // arrMenu.push(pMenu_CADHD);
+      //block(6);
 
       
       
 
       //----------------------------------------------------------------- Apps
       var pCurrentApp;
-      var pSmartNotes = new createApp(true,true,true,"SmartNote","Notes on Photo, Write Notebook",path("SmartNote"),path("SmartNote_1"),path("SmartNote_2"),path("SmartNote_3"),path("SmartNote_4"),"https://apps.apple.com/us/app/smart-note-notepad-draw-memo/id997513915");
-      arrApps.push(pSmartNotes);
-      pSmartNotes.rearrangeUI(); 
+      var pJumpingSpear = new createApp(true,true,true,"JumpingSpear","Aim the target, dodge to throw",path("JumpingSpear"),path("JumpingSpear_1"),path("JumpingSpear_2"),path("JumpingSpear_3"),path("JumpingSpear_4"),"https://apps.apple.com/us/app/jumping-spear-shooting-action/id1668682140");
+      arrApps.push(pJumpingSpear);
+      pJumpingSpear.rearrangeUI(); 
       
-      var pCADHD = new createApp(true,true,true,"CADHD","concept drafting sketch",path("CADHD"),path("CADHD_1"),path("CADHD_2"),path("CADHD_3"),path("CADHD_4"),"https://apps.apple.com/us/app/cad-hd/id998042409");
-      arrApps.push(pCADHD);
-      pCADHD.rearrangeUI();
+      // var pCADHD = new createApp(true,true,true,"CADHD","concept drafting sketch",path("CADHD"),path("CADHD_1"),path("CADHD_2"),path("CADHD_3"),path("CADHD_4"),"https://apps.apple.com/us/app/cad-hd/id998042409");
+      // arrApps.push(pCADHD);
+      // pCADHD.rearrangeUI();
       
-      var pStickyNotes = new createApp(true,true,true,"StickyNotes","simpley use, fast performance",path("StickyNotes"),path("StickyNotes_1"),path("StickyNotes_2"),path("StickyNotes_3"),path("StickyNotes_4"),"https://apps.apple.com/us/app/sticky-notes-pin-pad-pro/id1108418166");
-      arrApps.push(pStickyNotes);
-      pStickyNotes.rearrangeUI();
+      // var pStickyNotes = new createApp(true,true,true,"StickyNotes","simpley use, fast performance",path("StickyNotes"),path("StickyNotes_1"),path("StickyNotes_2"),path("StickyNotes_3"),path("StickyNotes_4"),"https://apps.apple.com/us/app/sticky-notes-pin-pad-pro/id1108418166");
+      // arrApps.push(pStickyNotes);
+      // pStickyNotes.rearrangeUI();
       
-      var pPlusNote = new createApp(true,true,true,"PlusNote","think and draw grid, pattern on blackboard",path("PlusNote"),path("PlusNote_1"),path("PlusNote_2"),path("PlusNote_3"),path("PlusNote_4"),"https://apps.apple.com/us/app/plus-note-taking-memo-notepad/id999458993");
-      arrApps.push(pPlusNote);
-      pPlusNote.rearrangeUI();
+      // var pPlusNote = new createApp(true,true,true,"PlusNote","think and draw grid, pattern on blackboard",path("PlusNote"),path("PlusNote_1"),path("PlusNote_2"),path("PlusNote_3"),path("PlusNote_4"),"https://apps.apple.com/us/app/plus-note-taking-memo-notepad/id999458993");
+      // arrApps.push(pPlusNote);
+      // pPlusNote.rearrangeUI();
 
-      var pHandwriting = new createApp(true,true,true,"Handwriting","Handwriting Notes, handwriting on paper",path("Handwriting"),path("Handwriting_1"),path("Handwriting_2"),path("Handwriting_3"),path("Handwriting_4"),"https://apps.apple.com/us/app/handwriting-notepad-draw-notes/id957141299");
-      arrApps.push(pHandwriting);
-      pHandwriting.rearrangeUI();
+      // var pHandwriting = new createApp(true,true,true,"Handwriting","Handwriting Notes, handwriting on paper",path("Handwriting"),path("Handwriting_1"),path("Handwriting_2"),path("Handwriting_3"),path("Handwriting_4"),"https://apps.apple.com/us/app/handwriting-notepad-draw-notes/id957141299");
+      // arrApps.push(pHandwriting);
+      // pHandwriting.rearrangeUI();
 
-      var pHandyNote = new createApp(true,true,true,"HandyNote","HandyNote Notes, HandyNote on paper",path("Handynote"),path("HandyNote_1"),path("HandyNote_2"),path("HandyNote_3"),path("HandyNote_4"),"https://apps.apple.com/us/app/handy-note-notepad-draw-memo/id1595372536");
-      arrApps.push(pHandyNote);
-      pHandyNote.rearrangeUI();
+      // var pHandyNote = new createApp(true,true,true,"HandyNote","HandyNote Notes, HandyNote on paper",path("Handynote"),path("HandyNote_1"),path("HandyNote_2"),path("HandyNote_3"),path("HandyNote_4"),"https://apps.apple.com/us/app/handy-note-notepad-draw-memo/id1595372536");
+      // arrApps.push(pHandyNote);
+      // pHandyNote.rearrangeUI();
       
-      var pThinkNote = new createApp(true,true,true,"ThinkNote","think and draw grid, pattern on blackboard",path("ThinkNote"),path("ThinkNote_1"),path("ThinkNote_2"),path("ThinkNote_3"),path("ThinkNote_4"),"https://apps.apple.com/us/app/think-note-book-write-edit/id1075912579");
-      arrApps.push(pThinkNote);
-      pThinkNote.rearrangeUI();
+      // var pThinkNote = new createApp(true,true,true,"ThinkNote","think and draw grid, pattern on blackboard",path("ThinkNote"),path("ThinkNote_1"),path("ThinkNote_2"),path("ThinkNote_3"),path("ThinkNote_4"),"https://apps.apple.com/us/app/think-note-book-write-edit/id1075912579");
+      // arrApps.push(pThinkNote);
+      // pThinkNote.rearrangeUI();
       
-      var pNewNotes = new createApp(true,true,true,"NewNote","study draw, think, designs, patterns",path("NewNote"),path("NewNote_1"),path("NewNote_2"),path("NewNote_3"),path("NewNote_4"),"https://apps.apple.com/us/app/new-note-notebook-draw-memo/id995861016");
-      arrApps.push(pNewNotes);
-      pNewNotes.rearrangeUI();
+      // var pNewNotes = new createApp(true,true,true,"NewNote","study draw, think, designs, patterns",path("NewNote"),path("NewNote_1"),path("NewNote_2"),path("NewNote_3"),path("NewNote_4"),"https://apps.apple.com/us/app/new-note-notebook-draw-memo/id995861016");
+      // arrApps.push(pNewNotes);
+      // pNewNotes.rearrangeUI();
       
-      var pPenNote = new createApp(true,true,true,"PenNote","finger paint memo, draw on pic",path("PenNote"),path("PenNote_1"),path("PenNote_2"),path("PenNote_3"),path("PenNote_4"),"https://apps.apple.com/us/app/pen-note-taking-memo-notepad/id634090795");
-      arrApps.push(pPenNote);
-      pPenNote.rearrangeUI();
+      // var pPenNote = new createApp(true,true,true,"PenNote","finger paint memo, draw on pic",path("PenNote"),path("PenNote_1"),path("PenNote_2"),path("PenNote_3"),path("PenNote_4"),"https://apps.apple.com/us/app/pen-note-taking-memo-notepad/id634090795");
+      // arrApps.push(pPenNote);
+      // pPenNote.rearrangeUI();
 
-      var pTitleBlock3 = createTitleBlock("#999999","#353535",fFontSize*0.5,"Support, Sales, Marketing or any other questions you might have about our products, services").padding(4,0);
+      var pTitleBlock1 = createTitleBlock("#d0d0d0","#353535",fFontSize*0.7,
+      `Embark on an wonderful journey to reclaim the beautiful lands
+      from the clutches of the Goths! 
+      dodge their attacks and aim 
+      for the target to claim victory!`
+).padding(10,0);
+      //div(2).toBody();
+      //var pTitleBlock2 = createTitleBlock("#eeeeee",sColor,20,"Handwriting note taking app").padding(4,0);
+      var pTitleBlock2 = createTitleBlock("#999999","#353535",fFontSize*0.6,
+      `Goths have taken all the beautiful lands!
+This land used to be a land full of God-given blessings, 
+but thorn bushes are starting to grow!
+Defeat the Goths and set them free!
+Dodge their spears and aim for the target!
+a legendary sharpshooter!! claim victory!`
+).padding(4,0);
+
+//divLine(sLineColor,fLineGap1,fLineGap2);
+    //block(divLine(sLineColor,fLineGap1,fLineGap2));
+
+    //divLine(sLineColor,fLineGap1,fLineGap2).toBody();
+    div(30).toBody();
+
+      var pTitleBlock3 = createTitleBlock("#d0d0d0","#353535",fFontSize*0.5,"Support, Sales, Marketing or any other questions you might have about our products, services").padding(4,0);
       div(8*fMul).toBody();
 
       
@@ -308,34 +327,34 @@
       div(30).toBody();
 
       //----------------------------------------------------------------- menu clicked
-      arrMenu.forEach(function(item,index){
-        item.hovered({"color":sColor});
-        item.selected({"color":sColor});
-        item.clicked({"color":"blue"});
-        item.onclick(function(e){
-          var pSelectedApp;
-          if( item == pMenu_SmartNote )
-            pSelectedApp = pSmartNotes;
-          else if( item == pMenu_CADHD )
-            pSelectedApp = pCADHD;
-          else if( item == pMenu_StickyNotes )
-            pSelectedApp = pStickyNotes;
-          else if( item == pMenu_PlusNote )
-            pSelectedApp = pPlusNote;
-          else if( item == pMenu_Handwriting )
-            pSelectedApp = pHandwriting;
-          else if( item == pMenu_HandyNote )
-            pSelectedApp = pHandyNote;
-          else if( item == pMenu_ThinkNote )
-            pSelectedApp = pThinkNote;
-          else if( item == pMenu_NewNote )
-            pSelectedApp = pNewNotes;
-          else if( item == pMenu_PenNote )
-            pSelectedApp = pPenNote;
+      // arrMenu.forEach(function(item,index){
+      //   item.hovered({"color":sColor});
+      //   item.selected({"color":sColor});
+      //   item.clicked({"color":"blue"});
+      //   item.onclick(function(e){
+      //     var pSelectedApp;
+      //     if( item == pMenu_JumpingSpear )
+      //       pSelectedApp = pJumpingSpear;
+      //     // else if( item == pMenu_CADHD )
+      //     //   pSelectedApp = pCADHD;
+      //     // else if( item == pMenu_StickyNotes )
+      //     //   pSelectedApp = pStickyNotes;
+      //     // else if( item == pMenu_PlusNote )
+      //     //   pSelectedApp = pPlusNote;
+      //     // else if( item == pMenu_Handwriting )
+      //     //   pSelectedApp = pHandwriting;
+      //     // else if( item == pMenu_HandyNote )
+      //     //   pSelectedApp = pHandyNote;
+      //     // else if( item == pMenu_ThinkNote )
+      //     //   pSelectedApp = pThinkNote;
+      //     // else if( item == pMenu_NewNote )
+      //     //   pSelectedApp = pNewNotes;
+      //     // else if( item == pMenu_PenNote )
+      //     //   pSelectedApp = pPenNote;
 
-          hideAppsExceptOne(pSelectedApp);
-        });
-      });
+      //     hideAppsExceptOne(pSelectedApp);
+      //   });
+      // });
 
       function hideAppsExceptOne(pExceptApp){
         arrApps.forEach(function(item,index){
@@ -352,24 +371,24 @@
 
       function selectMenu(pApp){
         var pMenu;
-        if( pApp == pSmartNotes )
-          pMenu = pMenu_SmartNote;
-        else if( pApp == pCADHD )
-          pMenu = pMenu_CADHD;
-        else if( pApp == pStickyNotes )
-          pMenu = pMenu_StickyNotes;
-        else if( pApp == pPlusNote )
-          pMenu = pMenu_PlusNote;
-        else if( pApp == pHandwriting )
-          pMenu = pMenu_Handwriting;
-        else if( pApp == pHandyNote )
-          pMenu = pMenu_HandyNote;
-        else if( pApp == pThinkNote )
-          pMenu = pMenu_ThinkNote;
-        else if( pApp == pNewNotes )
-          pMenu = pMenu_NewNote;
-        else if( pApp == pPenNote )
-          pMenu = pMenu_PenNote;
+        if( pApp == pJumpingSpear )
+          pMenu = pMenu_JumpingSpear;
+        // else if( pApp == pCADHD )
+        //   pMenu = pMenu_CADHD;
+        // else if( pApp == pStickyNotes )
+        //   pMenu = pMenu_StickyNotes;
+        // else if( pApp == pPlusNote )
+        //   pMenu = pMenu_PlusNote;
+        // else if( pApp == pHandwriting )
+        //   pMenu = pMenu_Handwriting;
+        // else if( pApp == pHandyNote )
+        //   pMenu = pMenu_HandyNote;
+        // else if( pApp == pThinkNote )
+        //   pMenu = pMenu_ThinkNote;
+        // else if( pApp == pNewNotes )
+        //   pMenu = pMenu_NewNote;
+        // else if( pApp == pPenNote )
+        //   pMenu = pMenu_PenNote;
 
         arrMenu.forEach(function(item,index){
           //item.select();
@@ -387,30 +406,30 @@
       // http://127.0.0.1:3000/index.html?app=newnote
       var sParam = findGetParameter("app");
       if( is(sParam) ){
-        if( sParam == "smartnote" )
-          pCurrentApp = pSmartNotes;
-        else if( sParam == "cadhd" )
-          pCurrentApp = pCADHD;
-        else if( sParam == "stickynotes" )
-          pCurrentApp = pStickyNotes;
-        else if( sParam == "plusnote" )
-          pCurrentApp = pPlusNote;
-        else if( sParam == "handwriting" )
-          pCurrentApp = pHandwriting;
-        else if( sParam == "handynote" )
-          pCurrentApp = pHandyNote;
-        else if( sParam == "thinknote" )
-          pCurrentApp = pThinkNote;
-        else if( sParam == "newnote" )
-          pCurrentApp = pNewNotes;
-        else if( sParam == "pennote" )
-          pCurrentApp = pPenNote;
+        if( sParam == "JumpingSpear" )
+          pCurrentApp = pJumpingSpear;
+        // else if( sParam == "cadhd" )
+        //   pCurrentApp = pCADHD;
+        // else if( sParam == "stickynotes" )
+        //   pCurrentApp = pStickyNotes;
+        // else if( sParam == "plusnote" )
+        //   pCurrentApp = pPlusNote;
+        // else if( sParam == "handwriting" )
+        //   pCurrentApp = pHandwriting;
+        // else if( sParam == "handynote" )
+        //   pCurrentApp = pHandyNote;
+        // else if( sParam == "thinknote" )
+        //   pCurrentApp = pThinkNote;
+        // else if( sParam == "newnote" )
+        //   pCurrentApp = pNewNotes;
+        // else if( sParam == "pennote" )
+        //   pCurrentApp = pPenNote;
         else
-          pCurrentApp = pSmartNotes;
+          pCurrentApp = pJumpingSpear;
       }
 
       if( is(pCurrentApp) == false )
-       pCurrentApp = pSmartNotes;
+       pCurrentApp = pJumpingSpear;
       hideAppsExceptOne(pCurrentApp);
 
       /*
@@ -421,15 +440,15 @@
       */
       maxWidth( function(bMobile,bTablet){
         recalculateUI(bMobile,bTablet); // 마진을 줄인다.
-        pSmartNotes.rearrangeUI();
-        pNewNotes.rearrangeUI();
-        pPenNote.rearrangeUI();
-        pThinkNote.rearrangeUI();
-        pPlusNote.rearrangeUI();
-        pCADHD.rearrangeUI();
-        pHandwriting.rearrangeUI();
-        pHandyNote.rearrangeUI();
-        pStickyNotes.rearrangeUI();
+        pJumpingSpear.rearrangeUI();
+        // pNewNotes.rearrangeUI();
+        // pPenNote.rearrangeUI();
+        // pThinkNote.rearrangeUI();
+        // pPlusNote.rearrangeUI();
+        // pCADHD.rearrangeUI();
+        // pHandwriting.rearrangeUI();
+        // pHandyNote.rearrangeUI();
+        // pStickyNotes.rearrangeUI();
         pTitleBlock1.width(fMainWidth);
         pTitleBlock2.width(fMainWidth);
       });
