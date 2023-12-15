@@ -234,18 +234,27 @@
       var pMenu_StickyNotes = item(img(path("StickyNotes")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
       arrMenu.push(pMenu_StickyNotes);
-      var pMenu_Handwriting = item(img(path("Handwriting")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_Handwriting);
+
+      //var pMenu_Handwriting = item(img(path("Handwriting")).width(fIcon).css("border-radius","20%"));
+      //space(fMenuSpace);
+      //arrMenu.push(pMenu_Handwriting);
+      
       var pMenu_ThinkNote = item(img(path("ThinkNote")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
       arrMenu.push(pMenu_ThinkNote);
-      var pMenu_HandyNote = item(img(path("HandyNote")).width(fIcon).css("border-radius","20%"));
+
+      var pMenu_LearnHTML = item(img(path("LearnHTML")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
-      arrMenu.push(pMenu_HandyNote);
-      var pMenu_PenNote = item(img(path("PenNote")).width(fIcon).css("border-radius","20%"));
-      space(fMenuSpace);
-      arrMenu.push(pMenu_PenNote);
+      arrMenu.push(pMenu_LearnHTML);
+
+      //var pMenu_HandyNote = item(img(path("HandyNote")).width(fIcon).css("border-radius","20%"));
+      //space(fMenuSpace);
+      //arrMenu.push(pMenu_HandyNote);
+
+      //var pMenu_PenNote = item(img(path("PenNote")).width(fIcon).css("border-radius","20%"));
+      //space(fMenuSpace);
+      //arrMenu.push(pMenu_PenNote);
+      
       var pMenu_NewNote = item(img(path("NewNote")).width(fIcon).css("border-radius","20%"));
       space(fMenuSpace);
       arrMenu.push(pMenu_NewNote);
@@ -275,13 +284,17 @@
       arrApps.push(pPlusNote);
       pPlusNote.rearrangeUI();
 
-      var pHandwriting = new createApp(true,true,true,"Handwriting","Handwriting Notes, handwriting on paper",path("Handwriting"),path("Handwriting_1"),path("Handwriting_2"),path("Handwriting_3"),path("Handwriting_4"),"https://apps.apple.com/us/app/handwriting-notepad-draw-notes/id957141299");
-      arrApps.push(pHandwriting);
-      pHandwriting.rearrangeUI();
+      // var pHandwriting = new createApp(true,true,true,"Handwriting","Handwriting Notes, handwriting on paper",path("Handwriting"),path("Handwriting_1"),path("Handwriting_2"),path("Handwriting_3"),path("Handwriting_4"),"https://apps.apple.com/us/app/handwriting-notepad-draw-notes/id957141299");
+      // arrApps.push(pHandwriting);
+      // pHandwriting.rearrangeUI();
 
-      var pHandyNote = new createApp(true,true,true,"HandyNote","HandyNote Notes, HandyNote on paper",path("Handynote"),path("HandyNote_1"),path("HandyNote_2"),path("HandyNote_3"),path("HandyNote_4"),"https://apps.apple.com/us/app/handy-note-notepad-draw-memo/id1595372536");
-      arrApps.push(pHandyNote);
-      pHandyNote.rearrangeUI();
+      var pLearnHTML = new createApp(true,true,true,"LearnHTML","LearnHTML Notes, LearnHTML on paper",path("LearnHTML"),path("LearnHTML_1"),path("LearnHTML_2"),path("LearnHTML_3"),path("LearnHTML_4"),"https://apps.apple.com/us/app/LearnHTML-notepad-draw-notes/id957141299");
+      arrApps.push(pLearnHTML);
+      pLearnHTML.rearrangeUI();
+
+      // var pHandyNote = new createApp(true,true,true,"HandyNote","HandyNote Notes, HandyNote on paper",path("Handynote"),path("HandyNote_1"),path("HandyNote_2"),path("HandyNote_3"),path("HandyNote_4"),"https://apps.apple.com/us/app/handy-note-notepad-draw-memo/id1595372536");
+      // arrApps.push(pHandyNote);
+      // pHandyNote.rearrangeUI();
       
       var pThinkNote = new createApp(true,true,true,"ThinkNote","think and draw grid, pattern on blackboard",path("ThinkNote"),path("ThinkNote_1"),path("ThinkNote_2"),path("ThinkNote_3"),path("ThinkNote_4"),"https://apps.apple.com/us/app/think-note-book-write-edit/id1075912579");
       arrApps.push(pThinkNote);
@@ -291,9 +304,9 @@
       arrApps.push(pNewNotes);
       pNewNotes.rearrangeUI();
       
-      var pPenNote = new createApp(true,true,true,"PenNote","finger paint memo, draw on pic",path("PenNote"),path("PenNote_1"),path("PenNote_2"),path("PenNote_3"),path("PenNote_4"),"https://apps.apple.com/us/app/pen-note-taking-memo-notepad/id634090795");
-      arrApps.push(pPenNote);
-      pPenNote.rearrangeUI();
+      // var pPenNote = new createApp(true,true,true,"PenNote","finger paint memo, draw on pic",path("PenNote"),path("PenNote_1"),path("PenNote_2"),path("PenNote_3"),path("PenNote_4"),"https://apps.apple.com/us/app/pen-note-taking-memo-notepad/id634090795");
+      // arrApps.push(pPenNote);
+      // pPenNote.rearrangeUI();
 
       var pTitleBlock3 = createTitleBlock("#999999","#353535",fFontSize*0.5,"Support, Sales, Marketing or any other questions you might have about our products, services").padding(4,0);
       div(8*fMul).toBody();
@@ -322,16 +335,18 @@
             pSelectedApp = pStickyNotes;
           else if( item == pMenu_PlusNote )
             pSelectedApp = pPlusNote;
-          else if( item == pMenu_Handwriting )
-            pSelectedApp = pHandwriting;
-          else if( item == pMenu_HandyNote )
-            pSelectedApp = pHandyNote;
+          // else if( item == pMenu_Handwriting )
+          //   pSelectedApp = pHandwriting;
+          else if( item == pMenu_LearnHTML )
+            pSelectedApp = pLearnHTML;
+          // else if( item == pMenu_HandyNote )
+          //   pSelectedApp = pHandyNote;
           else if( item == pMenu_ThinkNote )
             pSelectedApp = pThinkNote;
           else if( item == pMenu_NewNote )
             pSelectedApp = pNewNotes;
-          else if( item == pMenu_PenNote )
-            pSelectedApp = pPenNote;
+          // else if( item == pMenu_PenNote )
+          //   pSelectedApp = pPenNote;
 
           hideAppsExceptOne(pSelectedApp);
         });
@@ -360,16 +375,18 @@
           pMenu = pMenu_StickyNotes;
         else if( pApp == pPlusNote )
           pMenu = pMenu_PlusNote;
-        else if( pApp == pHandwriting )
-          pMenu = pMenu_Handwriting;
-        else if( pApp == pHandyNote )
-          pMenu = pMenu_HandyNote;
+        // else if( pApp == pHandwriting )
+        //   pMenu = pMenu_Handwriting;
+        else if( pApp == pLearnHTML )
+          pMenu = pMenu_LearnHTML;
+        // else if( pApp == pHandyNote )
+        //   pMenu = pMenu_HandyNote;
         else if( pApp == pThinkNote )
           pMenu = pMenu_ThinkNote;
         else if( pApp == pNewNotes )
           pMenu = pMenu_NewNote;
-        else if( pApp == pPenNote )
-          pMenu = pMenu_PenNote;
+        // else if( pApp == pPenNote )
+        //   pMenu = pMenu_PenNote;
 
         arrMenu.forEach(function(item,index){
           //item.select();
@@ -395,16 +412,18 @@
           pCurrentApp = pStickyNotes;
         else if( sParam == "plusnote" )
           pCurrentApp = pPlusNote;
-        else if( sParam == "handwriting" )
-          pCurrentApp = pHandwriting;
-        else if( sParam == "handynote" )
-          pCurrentApp = pHandyNote;
+        // else if( sParam == "handwriting" )
+        //   pCurrentApp = pHandwriting;
+        else if( sParam == "learnhtml" )
+          pCurrentApp = pLearnHTML;
+        // else if( sParam == "handynote" )
+        //   pCurrentApp = pHandyNote;
         else if( sParam == "thinknote" )
           pCurrentApp = pThinkNote;
         else if( sParam == "newnote" )
           pCurrentApp = pNewNotes;
-        else if( sParam == "pennote" )
-          pCurrentApp = pPenNote;
+        // else if( sParam == "pennote" )
+        //   pCurrentApp = pPenNote;
         else
           pCurrentApp = pSmartNotes;
       }
@@ -423,12 +442,13 @@
         recalculateUI(bMobile,bTablet); // 마진을 줄인다.
         pSmartNotes.rearrangeUI();
         pNewNotes.rearrangeUI();
-        pPenNote.rearrangeUI();
+        //pPenNote.rearrangeUI();
         pThinkNote.rearrangeUI();
         pPlusNote.rearrangeUI();
         pCADHD.rearrangeUI();
-        pHandwriting.rearrangeUI();
-        pHandyNote.rearrangeUI();
+        //pHandwriting.rearrangeUI();
+        pLearnHTML.rearrangeUI();
+        //pHandyNote.rearrangeUI();
         pStickyNotes.rearrangeUI();
         pTitleBlock1.width(fMainWidth);
         pTitleBlock2.width(fMainWidth);
